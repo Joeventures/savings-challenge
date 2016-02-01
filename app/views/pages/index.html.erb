@@ -1,9 +1,19 @@
 <div class="jumbotron">
   <div class="container">
     <h1>Welcome!</h1>
-    <p>Register to get started.</p>
-    <p>
-      <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
-    </p>
+    <% if user_signed_in? %>
+      <% # binding.pry %>
+      <p>Welcome <%= current_user.name %>!</p>
+      <p>
+        <%= link_to 'Profile', edit_user_registration_path, class: 'btn btn-primary btn-lg' %>
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-lg' %>
+      </p>
+    <% else %>
+      <p>Register to get started.</p>
+      <p>
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+        <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary btn-lg' %>
+      </p>
+    <% end %>
   </div>
 </div>
