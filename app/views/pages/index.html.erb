@@ -1,19 +1,15 @@
 <div class="jumbotron">
-  <div class="container">
+  <% if user_signed_in? %>
+    <h1>Hey there, <%= current_user.name %>!</h1>
+    <p>Let's check on your progress and see how you're doing.</p>
+  <% else %>
     <h1>Welcome!</h1>
-    <% if user_signed_in? %>
-      <% # binding.pry %>
-      <p>Welcome <%= current_user.name %>!</p>
-      <p>
-        <%= link_to 'Profile', edit_user_registration_path, class: 'btn btn-primary btn-lg' %>
-        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-primary btn-lg' %>
-      </p>
-    <% else %>
-      <p>Register to get started.</p>
-      <p>
-        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
-        <%= link_to 'Login', new_user_session_path, class: 'btn btn-primary btn-lg' %>
-      </p>
-    <% end %>
-  </div>
+    <p>Save money for peace of mind. Make it a weekly thing.</p>
+    <%= link_to 'Get Started', new_user_registration_path, class: 'btn btn-primary btn-lg btn-success' %>
+  <% end %>
+</div>
+<div class="lead">
+  <p>
+    Stuff
+  </p>
 </div>

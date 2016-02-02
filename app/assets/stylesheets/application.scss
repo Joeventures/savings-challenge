@@ -16,3 +16,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'bootstrap/theme';
+
+.navbar-inverse {
+  background-image: linear-gradient(to bottom, #3ccc3c 0%, #282 100%);
+  border-color: #226622;
+}
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav > li > a {
+  color: black;
+  text-shadow: none;
+}
