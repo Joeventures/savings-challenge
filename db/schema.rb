@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20160202220540) do
   enable_extension "plpgsql"
 
   create_table "plans", force: :cascade do |t|
+    t.integer  "user_id"
     t.text     "title"
     t.integer  "total"
     t.datetime "created_at", null: false
