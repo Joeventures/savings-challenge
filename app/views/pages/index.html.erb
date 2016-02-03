@@ -8,8 +8,22 @@
     <%= link_to 'Get Started', new_user_registration_path, class: 'btn btn-primary btn-lg btn-success' %>
   <% end %>
 </div>
+
+<% if user_signed_in? %>
 <div class="lead">
   <p>
-    Stuff
+    <% if current_user.plans.first %>
+      You have a plan!
+    <% else %>
+      You don't have a plan. Start one now!
+    <% end %>
   </p>
+  <%= form_for Plan.new do |f| %>
+    <%= f.label :title, "What are you saving up for?" %>
+    <%= f.text_field :title %><br>
+    <%= f.label :total, "How much do you plan to save?" %>
+    <%= f.text_field :total %><br>
+    <%= submit_tag("Create a Plan") %>
+  <% end %>
 </div>
+<% end %>
