@@ -5,7 +5,7 @@ class CreatePayments < ActiveRecord::Migration
       t.integer :amount
       t.boolean :complete, default: false
       t.date :payment_date
-      t.integer :increment
+      t.integer :inc
 
       t.timestamps null: false
     end
