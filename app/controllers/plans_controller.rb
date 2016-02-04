@@ -25,7 +25,7 @@ class PlansController < ApplicationController
         )
         i += 1
       end
-
+      plan.correct_last_payment unless plan.payments_correct?
       redirect_to root_path, alert: "Plan saved successfully."
     else
       redirect_to root_path, alert: "Plan did not save!"
