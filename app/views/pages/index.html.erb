@@ -10,20 +10,41 @@
 </div>
 
 <% if user_signed_in? %>
-<div class="lead">
-  <p>
-    <% if current_user.plans.first %>
-      You have a plan!
-    <% else %>
-      You don't have a plan. Start one now!
+  <div class="lead">
+    <p>
+      <% if current_user.plans.first %>
+        You have a plan!
+      <% else %>
+        You don't have a plan. Start one now!
+      <% end %>
+    </p>
+    <%= form_for Plan.new, html: {class: 'form-horizontal'} do |f| %>
+      <div class="form-group">
+        <%= f.label :title, "What are you saving up for?", class: 'col-sm-5 control-label' %>
+        <div class="col-sm-4 input-group">
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :total, "How much do you plan to save?", class: 'col-sm-5 control-label' %>
+        <div class="col-sm-4 input-group">
+          <%= f.text_field :total, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="start_date" class="col-sm-5 control-label">When do you want to make the first deposit?</label>
+        <div class="col-sm-4 input-group date">
+          <input type="text" class="form-control" name="plan[start_date]" id="start_date"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+        </div>
+      </div>
+      <%= submit_tag("Create a Plan") %>
     <% end %>
-  </p>
-  <%= form_for Plan.new do |f| %>
-    <%= f.label :title, "What are you saving up for?" %>
-    <%= f.text_field :title %><br>
-    <%= f.label :total, "How much do you plan to save?" %>
-    <%= f.text_field :total %><br>
-    <%= submit_tag("Create a Plan") %>
-  <% end %>
-</div>
+  </div>
+  <script type="application/javascript">
+    $('.input-group.date').datepicker({
+      format: "yyyy-mm-dd",
+      startDate: "-today",
+      todayHighlight: true
+    });
+  </script>
 <% end %>
