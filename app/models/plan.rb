@@ -1,6 +1,6 @@
 class Plan < ActiveRecord::Base
   belongs_to :user
-  has_many :payments
+  has_many :payments, dependent: :destroy
 
   def sum_payments
     self.payments.sum(:amount)
