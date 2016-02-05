@@ -6,6 +6,15 @@ class Plan < ActiveRecord::Base
     self.payments.sum(:amount)
   end
 
+  def progress
+    self.payments.where(complete: true).sum(:amount)
+  end
+
+  def progress_percent
+    f = (progress.to_f / sum_payments.to_f) * 100
+    f.to_i
+  end
+
   def payments_correct?
     self.total == sum_payments
   end
