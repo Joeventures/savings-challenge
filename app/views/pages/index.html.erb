@@ -11,13 +11,37 @@
 
 <% if user_signed_in? %>
   <div class="lead">
-    <p>
-      <% if current_user.plans.first %>
-        You have a plan!
-      <% else %>
-        You don't have a plan. Start one now!
-      <% end %>
-    </p>
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-1">
+        <% if current_user.plans.first %>
+          You have <%= current_user.plans.count(:id) %> plans:
+          <table class="table table-striped">
+            <thead>
+            <th>Title</th>
+            <th>Goal</th>
+            <th>Progress</th>
+            </thead>
+            <tbody>
+          <% current_user.plans.each do |plan| %>
+            <tr>
+              <td><%= plan.title %></td>
+              <td><%= plan.total %></td>
+              <td>
+                <div class="progress">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="<%= plan.progress_percent %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= plan.progress_percent %>%; min-width: 2em;">
+                  <%= plan.progress_percent %>%
+                    </div>
+                </div>
+              </td>
+            </tr>
+          <% end %>
+            </tbody>
+          </table>
+        <% else %>
+          You don't have a plan. Start one now!
+        <% end %>
+      </div>
+    </div>
     <%= form_for Plan.new, html: {class: 'form-horizontal'} do |f| %>
       <div class="form-group">
         <%= f.label :title, "What are you saving up for?", class: 'col-sm-5 control-label' %>
@@ -31,7 +55,11 @@
           <%= f.text_field :total, class: 'form-control', placeholder: 'Enter a number greater than 1378.' %>
         </div>
       </div>
-      <%= submit_tag("Create a Plan") %>
+      <div class="form-group">
+        <div class="col-sm-offset-5">
+          <%= submit_tag "Create a Plan", class: 'btn btn-default' %>
+        </div>
+      </div>
     <% end %>
   </div>
   <script type="application/javascript">
@@ -41,14 +69,5 @@
       todayHighlight: true
     });
   </script>
-
-  <% current_user.plans.each do |plan| %>
-    <p>
-      <%= plan.title %>
-      <%= plan.payments_correct? %>
-      <%= plan.total %>
-      <%= plan.sum_payments %>
-    </p>
-  <% end %>
 <% end %>
 
