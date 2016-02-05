@@ -41,13 +41,14 @@
       todayHighlight: true
     });
   </script>
+
+  <% current_user.plans.each do |plan| %>
+    <p>
+      <%= plan.title %>
+      <%= plan.payments_correct? %>
+      <%= plan.total %>
+      <%= plan.sum_payments %>
+    </p>
+  <% end %>
 <% end %>
 
-<% current_user.plans.each do |plan| %>
-  <p>
-    <%= plan.title %>
-    <%= plan.payments_correct? %>
-    <%= plan.total %>
-    <%= plan.sum_payments %>
-  </p>
-<% end %>
