@@ -14,4 +14,8 @@ class PlansController < ApplicationController
       redirect_to root_path, alert: "Plan did not save!"
     end
   end
+
+  def show
+    @plan = Plan.find(params[:id])
+  end
 end
