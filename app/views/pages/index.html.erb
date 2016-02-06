@@ -11,67 +11,71 @@
 
 <% if user_signed_in? %>
   <div class="lead">
+    <% if current_user.plans.first %>
     <div class="panel panel-default">
+
       <div class="panel-heading">Your savings plans:</div>
-    <div class="row">
-      <div class="col-sm-8 col-sm-offset-2">
-        <% if current_user.plans.first %>
+      <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
 
-          <table class="table table-striped" style="margin-top: 20px;">
-            <thead>
-            <th></th>
-            <th>Goal</th>
-            <th>Progress</th>
-            </thead>
-            <tbody>
-          <% current_user.plans.each do |plan| %>
-            <tr>
-              <td>
-                <%= link_to plan.title, plan_url(plan), class: 'btn btn-default' %>
-              </td>
-              <td>$<%= number_with_delimiter plan.total, delimeter: ',' %></td>
-              <td style="vertical-align: middle;">
-                <div class="progress" style="margin-bottom: 0;">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="<%= plan.progress_percent %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= plan.progress_percent %>%; min-width: 2em;">
-                  <%= plan.progress_percent %>%
+
+            <table class="table table-striped" style="margin-top: 20px;">
+              <thead>
+              <th></th>
+              <th>Goal</th>
+              <th>Progress</th>
+              </thead>
+              <tbody>
+              <% current_user.plans.each do |plan| %>
+                <tr>
+                  <td>
+                    <%= link_to plan.title, plan_url(plan), class: 'btn btn-default' %>
+                  </td>
+                  <td>$<%= number_with_delimiter plan.total, delimeter: ',' %></td>
+                  <td style="vertical-align: middle;">
+                    <div class="progress" style="margin-bottom: 0;">
+                      <div class="progress-bar" role="progressbar" aria-valuenow="<%= plan.progress_percent %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= plan.progress_percent %>%; min-width: 2em;">
+                        <%= plan.progress_percent %>%
+                      </div>
                     </div>
-                </div>
-              </td>
+                  </td>
 
-            </tr>
-          <% end %>
-            </tbody>
-          </table>
-        <% else %>
-          You don't have a plan. Start one now!
-        <% end %>
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+
+
+        </div>
+
       </div>
+
     </div>
-    </div>
+    <% end %>
     <div class="panel panel-default">
       <div class="panel-heading">Create a new savings plan:</div>
 
-    <div class="panel-body">
-      <%= form_for Plan.new, html: {class: 'form-horizontal'} do |f| %>
-        <div class="form-group">
-          <%= f.label :title, "What are you saving up for?", class: 'col-sm-5 control-label' %>
-          <div class="col-sm-4 input-group">
-            <%= f.text_field :title, class: 'form-control', placeholder: 'Laptop, Car, Rainy Day, etc.' %>
+      <div class="panel-body">
+        <%= form_for Plan.new, html: {class: 'form-horizontal'} do |f| %>
+          <div class="form-group">
+            <%= f.label :title, "What are you saving up for?", class: 'col-sm-5 control-label' %>
+            <div class="col-sm-4 input-group">
+              <%= f.text_field :title, class: 'form-control', placeholder: 'Laptop, Car, Rainy Day, etc.' %>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <%= f.label :total, "How much do you plan to save?", class: 'col-sm-5 control-label' %>
-          <div class="col-sm-4 input-group">
-            <%= f.text_field :total, class: 'form-control', placeholder: 'Enter a number greater than 1378.' %>
+          <div class="form-group">
+            <%= f.label :total, "How much do you plan to save?", class: 'col-sm-5 control-label' %>
+            <div class="col-sm-4 input-group">
+              <%= f.text_field :total, class: 'form-control', placeholder: 'Enter a number greater than 1378.' %>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-offset-5">
-            <%= submit_tag "Create a Plan", class: 'btn btn-default' %>
+          <div class="form-group">
+            <div class="col-sm-offset-5">
+              <%= submit_tag "Create a Plan", class: 'btn btn-default' %>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
     </div>
   </div>
 <% end %>

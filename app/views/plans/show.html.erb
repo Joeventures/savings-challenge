@@ -8,7 +8,7 @@
       </thead>
       <% @plan.payments.sort_by(&:inc).each do |payment| %>
         <tr class="<%= 'success' if payment.complete %>">
-          <td></td>
+          <td><%= link_to 'Mark Payment Complete', payment_url(payment), method: :put, class: 'btn btn-default btn-xs' unless payment.complete %></td>
           <td>$<%= payment.amount %></td>
           <td><%= payment.payment_date %></td>
         </tr>
