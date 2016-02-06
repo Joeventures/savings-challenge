@@ -19,6 +19,6 @@ As a junior level Rails developer, I'm still learning the ropes. If you feel so 
 This project is a work in progress and is still in early alpha stages.
 
 Future features:
- - A payments page, where you can mark individual payments as completed.
+ - ~~A payments page, where you can mark individual payments as completed.~~
  - A weekly email reminder.
  - A PDF generator, in case you would rather print out your challenge
