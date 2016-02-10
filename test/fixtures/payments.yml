@@ -5,11 +5,11 @@ one:
   amount: 1
   complete: false
   payment_date: 2016-02-02
-  increment: 1
+  inc: 1
 
 two:
   plan_id: 1
   amount: 1
   complete: false
   payment_date: 2016-02-02
-  increment: 1
+  inc: 1

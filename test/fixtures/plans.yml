@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyText
-  total: 1
+  title: MyPlan
+  total: 5000
 
 two:
-  title: MyText
+  title: Plan Too Small
   total: 1
+
+three:
+  title: Plan Is Negative
+  total: -5000
+
+four:
+  title: Plan is Small Negative
+  total: -50
