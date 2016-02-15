@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Joeventures/savings-challenge.svg?branch=master)](https://travis-ci.org/Joeventures/savings-challenge)
+
 # 52 Week Money Challenge
 ## With a few twists
 
