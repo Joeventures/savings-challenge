@@ -31,21 +31,13 @@ class Plan < ActiveRecord::Base
   
   def build_payments
     inc = (self.total - 52) / 1326.0
-    number_list = Hash.new
-    index = 1
-
-    52.times do
-      number_list[index] = index.round
-      index += inc
-    end
-
-    i = 1
-    number_list.each do |x,payment|
+    payment = 1
+    52.times do |x|
       self.payments.create(
-          amount: payment,
-          inc: i
+           amount: payment.round,
+           inc: x + 1
       )
-      i += 1
+      payment += inc
     end
     self.correct_last_payment unless self.payments_correct?
   end
