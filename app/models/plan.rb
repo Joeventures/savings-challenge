@@ -2,6 +2,14 @@ class Plan < ActiveRecord::Base
   belongs_to :user
   has_many :payments, dependent: :destroy
 
+  validate :total_valid
+
+  def total_valid
+    if total < 1378
+      errors.add(:total, "Can't be less than 1378")
+    end
+  end
+
   def sum_payments
     self.payments.sum(:amount)
   end
