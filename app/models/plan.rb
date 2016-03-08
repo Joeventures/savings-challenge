@@ -3,6 +3,7 @@ class Plan < ActiveRecord::Base
   has_many :payments, dependent: :destroy
 
   validate :total_valid
+  validates :title, presence: true
 
   def total_valid
     if total < 1378
